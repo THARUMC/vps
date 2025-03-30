@@ -1,0 +1,30 @@
+name: Free Ubuntu VPS
+
+on:
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  ubuntu-vps:
+    runs-on: ubuntu-latest  # Use GitHub's Ubuntu runner
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3  # Checkout your code (if necessary)
+
+      - name: Install SSH Server & Necessary Packages
+        run: |
+          sudo apt update
+          sudo apt install -y openssh-server curl wget git build-essential
+
+      - name: Set Up SSH (Optional)
+        run: |
+          sudo service ssh start  # Start SSH service (you won't have external access)
+
+      - name: Simulate VPS Actions (Run Commands)
+        run: |
+          # Simulate a command you would run on a VPS
+          echo "Running on a GitHub Actions VPS!"
+          curl --version  # Example: Run curl command
+
+      - name: Keep VPS Alive (Simulate Long Running Process)
+        run: sleep 6h  # Keep the runner "alive" for 6 hours to simulate a session
